@@ -11,7 +11,7 @@
 				</div>
 
 				<nav class="space-x-4 text-sm">
-					<a href="/prompt-check" class="hover:underline">
+					<a href="/" class="hover:underline">
 						Prompt Check
 					</a>
 					<a href="/incidents" class="hover:underline">
