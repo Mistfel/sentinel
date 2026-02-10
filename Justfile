@@ -44,6 +44,11 @@ fresh:
 test:
 	{{sail}} test
 
+clear:
+	{{sail}} artisan config:clear
+	{{sail}} artisan cache:clear
+	{{sail}} artisan config:cache
+
 bootstrap:
 	just up
 	just composer install
