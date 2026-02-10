@@ -14,6 +14,9 @@ restart:
 	{{sail}} down
 	{{sail}} up -d
 
+db:
+	{{sail}} exec mysql mysql -u"${DB_USERNAME}" -p"${DB_PASSWORD}" "${DB_DATABASE}"
+
 logs:
 	{{sail}} logs -f
 
