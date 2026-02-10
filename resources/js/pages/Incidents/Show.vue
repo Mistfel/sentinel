@@ -21,7 +21,7 @@ const form = useForm({
 </script>
 
 <template>
-	<div class="max-w-3xl mx-auto p-6 space-y-6">
+	<div class="max-w-6xl mx-auto p-6 space-y-6">
 		<h1 class="text-2xl font-semibold">
 			{{ props.incident.title }}
 		</h1>
@@ -61,15 +61,12 @@ const form = useForm({
 			</div>
 
 			<button class="bg-black text-white px-4 py-2 rounded">
-				Update incident
+				Update Incident
 			</button>
+			<div class="rounded bg-white text-black px-4 py-2 disabled:opacity-50 inline-block ml-4 border-1 border-solid border-black">
+				<a href="/incidents">Back to Incidents</a>
+			</div>
 		</form>
-
-		<div class="pt-4">
-			<a href="/incidents" class="underline text-sm">
-				← Back to incidents
-			</a>
-		</div>
 	</div>
 </template>
 

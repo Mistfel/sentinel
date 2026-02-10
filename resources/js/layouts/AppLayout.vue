@@ -7,11 +7,13 @@
 		<header class="bg-black text-white">
 			<div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 				<div class="font-semibold text-lg">
-					Sentinel
+					<a href="/">
+						Sentinel
+					</a>
 				</div>
 
 				<nav class="space-x-4 text-sm">
-					<a href="/" class="hover:underline">
+					<a href="/prompt-check" class="hover:underline">
 						Prompt Check
 					</a>
 					<a href="/incidents" class="hover:underline">

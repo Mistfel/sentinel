@@ -26,7 +26,7 @@ const incidentTitle = ref('Prompt risk flagged')
 </script>
 
 <template>
-	<div class="max-w-3xl mx-auto p-6 space-y-6">
+	<div class="max-w-6xl mx-auto p-6 space-y-6">
 		<h1 class="text-2xl font-semibold">Prompt Check</h1>
 
 		<form @submit.prevent="form.post('/')" class="space-y-4">
@@ -53,9 +53,12 @@ const incidentTitle = ref('Prompt risk flagged')
 				</div>
 			</div>
 
-			<button type="submit" class="rounded bg-black text-white px-4 py-2 disabled:opacity-50" :disabled="form.processing">
-				Check prompt
+			<button type="submit" class="rounded bg-black text-white px-4 py-2 disabled:opacity-50 cursor-pointer" :disabled="form.processing">
+				Check Prompt
 			</button>
+			<div class="rounded bg-white text-black px-4 py-2 disabled:opacity-50 inline-block ml-4 border-1 border-solid border-black">
+				<a href="/incidents">View Incidents</a>
+			</div>
 		</form>
 
 		<div v-if="hasResult" class="rounded border p-4 space-y-3">
@@ -84,14 +87,10 @@ const incidentTitle = ref('Prompt risk flagged')
 					"
 				>
 					<button class="rounded bg-red-600 text-white px-4 py-2">
-						Log incident
+						Log Incident
 					</button>
 				</form>
 			</div>
-		</div>
-
-		<div class="text-sm">
-			<a href="/incidents">View incidents</a>
 		</div>
 	</div>
 </template>

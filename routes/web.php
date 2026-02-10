@@ -7,8 +7,12 @@ use Laravel\Fortify\Features;
 use App\Http\Controllers\PromptCheckController;
 use App\Http\Controllers\IncidentController;
 
-Route::get('/', [PromptCheckController::class, 'create'])->name('prompt-check.create');
-Route::post('/', [PromptCheckController::class, 'store'])->name('prompt-check.store');
+Route::get('/', function () {
+    return Inertia::render('Welcome', []);
+})->name('home');
+
+Route::get('/prompt-check', [PromptCheckController::class, 'create'])->name('prompt-check.create');
+Route::post('/prompt-check', [PromptCheckController::class, 'store'])->name('prompt-check.store');
 
 Route::get('/incidents', [IncidentController::class, 'index'])->name('incidents.index');
 Route::get('/incidents/{incident}', [IncidentController::class, 'show'])->name('incidents.show');
