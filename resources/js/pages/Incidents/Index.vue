@@ -49,7 +49,7 @@ const incidents = computed(() => props.incidents.data)
 		</div>
 
 		<div class="pt-4">
-			<a href="/prompt-check" class="underline text-sm">
+			<a href="/" class="underline text-sm">
 				← Back to prompt check
 			</a>
 		</div>
