@@ -1,3 +1,4 @@
+set quiet
 set dotenv-load := true
 sail := "./vendor/bin/sail"
 
@@ -41,7 +42,10 @@ build:
 migrate:
 	{{sail}} artisan migrate
 
-fresh:
+rollback:
+	{{sail}} artisan migrate:rollback
+
+seed:
 	{{sail}} artisan migrate:fresh --seed
 
 test:
