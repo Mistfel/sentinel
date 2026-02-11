@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3'
-import { home } from '@/routes'
+import { usePage } from '@inertiajs/vue3'
+import type { AppPageProps } from '@/types'
+import { computed } from 'vue'
+import { home, logout, login } from '@/routes'
 import { index as incidentsIndex } from '@/routes/incidents'
 import { create as promptCheckCreate } from '@/routes/prompt-check'
+
+const page = usePage<AppPageProps>()
+const isAuthenticated = computed(() => Boolean(page.props.auth?.user))
+
 </script>
+
 
 <template>
 	<div class="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
@@ -23,12 +31,29 @@ import { create as promptCheckCreate } from '@/routes/prompt-check'
 					</Link>
 				</div>
 
-				<nav class="space-x-4 text-sm">
+				<nav v-if="isAuthenticated" class="flex items-center gap-4 text-sm">
 					<Link :href="promptCheckCreate().url" class="hover:underline">
 						Prompt Check
 					</Link>
 					<Link :href="incidentsIndex().url" class="hover:underline">
 						Incidents
+					</Link>
+					<Link
+						:href="logout().url"
+						method="post"
+						as="button"
+						class="cursor-pointer rounded border border-white/30 px-3 py-1 hover:bg-white/10"
+					>
+						Logout
+					</Link>
+				</nav>
+
+				<nav v-else class="flex items-center gap-4 text-sm">
+					<Link
+						:href="login().url"
+						class="cursor-pointer rounded border border-white/30 px-3 py-1 hover:bg-white/10"
+					>
+						Login
 					</Link>
 				</nav>
 			</div>

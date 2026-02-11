@@ -12,6 +12,7 @@ class Incident extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
         'category',
         'severity',
@@ -27,5 +28,13 @@ class Incident extends Model
     public function promptCheck(): BelongsTo
     {
         return $this->belongsTo(PromptCheck::class);
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

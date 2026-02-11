@@ -19,11 +19,14 @@ class PromptCheckSeederTest extends TestCase
         $this->assertDatabaseCount('prompt_checks', 20);
         $this->assertDatabaseCount('incidents', 40);
         $this->assertSame(0, Incident::query()->whereNull('prompt_check_id')->count());
+        $this->assertSame(0, PromptCheck::query()->whereNull('user_id')->count());
+        $this->assertSame(0, Incident::query()->whereNull('user_id')->count());
 
         $incident = Incident::query()->with('promptCheck')->firstOrFail();
 
         $this->assertNotNull($incident->promptCheck);
         $this->assertSame($incident->promptCheck->prompt, $incident->prompt_snapshot);
+        $this->assertSame($incident->promptCheck->user_id, $incident->user_id);
         $this->assertInstanceOf(PromptCheck::class, $incident->promptCheck);
     }
 }

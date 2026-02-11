@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Incident;
 use App\Models\PromptCheck;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,6 +27,7 @@ class IncidentFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::factory(),
             'title' => rtrim(fake()->sentence(4), '.'),
             'category' => fake()->randomElement(['pii', 'secrets', 'jailbreak', 'policy', 'other']),
             'severity' => fake()->randomElement(['low', 'medium', 'high', 'critical']),

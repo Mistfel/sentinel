@@ -30,6 +30,7 @@ class IncidentController extends Controller
 		]);
 
 		$incident = Incident::create([
+			'user_id' => $request->user()->id,
 			'title' => $data['title'],
 			'category' => $this->categoryFromReasons($promptCheck->reasons ?? []),
 			'severity' => $promptCheck->result === 'block' ? 'high' : 'medium',

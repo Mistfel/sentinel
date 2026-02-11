@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3'
+import { Link } from '@inertiajs/vue3'
 import AppLayout from '@/layouts/AppLayout.vue'
+import { login } from '@/routes'
 import { index as incidentsIndex } from '@/routes/incidents'
 import { create as promptCheckCreate } from '@/routes/prompt-check'
 </script>
 
 <template>
-	<Head title="Sentinel" />
-
 	<div class="mx-auto flex w-full max-w-6xl flex-col gap-14 px-6 py-14 sm:py-18 lg:py-24">
 			<section class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
 				<div class="space-y-6">

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\PromptCheck;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -28,6 +29,7 @@ class PromptCheckFactory extends Factory
         );
 
         return [
+            'user_id' => User::factory(),
             'prompt' => fake()->paragraph(),
             'purpose' => fake()->optional()->sentence(4),
             'sensitivity' => fake()->randomElement(['public', 'internal', 'confidential', 'pii']),

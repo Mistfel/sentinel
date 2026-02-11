@@ -25,6 +25,7 @@ class PromptCheckController extends Controller
 		$result = $checker->check($data['prompt']);
 
 		$check = PromptCheck::create([
+			'user_id' => $request->user()->id,
 			'prompt' => $data['prompt'],
 			'purpose' => $data['purpose'] ?? null,
 			'sensitivity' => $data['sensitivity'],
