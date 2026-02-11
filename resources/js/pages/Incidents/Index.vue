@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/AppLayout.vue'
+import { Link } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
+import AppLayout from '@/layouts/AppLayout.vue'
+import { show as incidentsShow } from '@/routes/incidents'
+import { create as promptCheckCreate } from '@/routes/prompt-check'
 
 const props = defineProps<{
 	incidents: {
@@ -43,9 +46,9 @@ const filteredIncidents = computed(() => {
 	<div class="max-w-6xl mx-auto p-6 space-y-6">
 		<h1 class="text-2xl font-semibold">Incidents</h1>
 
-		<a href="/prompt-check" type="submit" class="rounded bg-black text-white px-4 py-2 disabled:opacity-50 cursor-pointer inline-block">
+		<Link :href="promptCheckCreate().url" class="inline-flex items-center rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
 			← Back to prompt check
-		</a>
+		</Link>
 
 		<div class="flex gap-3 float-right">
 			<input v-model="searchText" type="text" placeholder="Search incidents..." class="border rounded px-3 py-2 text-sm" />
@@ -78,7 +81,7 @@ const filteredIncidents = computed(() => {
 			>
 				<div>
 					<div class="font-medium">{{ incident.title }}</div>
-					<div class="text-sm text-gray-600 capitalize">
+					<div class="text-sm text-white-600 capitalize">
 						<span
 							class="h-4 w-4 inline-block rounded-full relative top-1 mr-1"
 							:title="incident.severity"
@@ -93,12 +96,12 @@ const filteredIncidents = computed(() => {
 
 				</div>
 
-				<a
-					:href="`/incidents/${incident.id}`"
+				<Link
+					:href="incidentsShow(incident.id).url"
 					class="text-sm underline"
 				>
 					View
-				</a>
+				</Link>
 			</div>
 		</div>
 	</div>

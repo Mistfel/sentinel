@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/AppLayout.vue'
+import { Link, router, useForm } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
-import { useForm } from '@inertiajs/vue3'
+import AppLayout from '@/layouts/AppLayout.vue'
+import { fromCheck, index as incidentsIndex } from '@/routes/incidents'
+import { store as promptCheckStore } from '@/routes/prompt-check'
 
 const form = useForm({
 	prompt: '',
@@ -29,7 +31,7 @@ const incidentTitle = ref('Prompt risk flagged')
 	<div class="max-w-6xl mx-auto p-6 space-y-6">
 		<h1 class="text-2xl font-semibold">Prompt Check</h1>
 
-		<form @submit.prevent="form.post('/')" class="space-y-4">
+		<form @submit.prevent="form.post(promptCheckStore().url)" class="space-y-4">
 			<div>
 				<label class="block text-sm font-medium mb-1">Prompt</label>
 				<textarea v-model="form.prompt" rows="8" class="w-full rounded border p-2" />
@@ -53,12 +55,15 @@ const incidentTitle = ref('Prompt risk flagged')
 				</div>
 			</div>
 
-			<button type="submit" class="rounded bg-black text-white px-4 py-2 disabled:opacity-50 cursor-pointer" :disabled="form.processing">
+			<button type="submit" class="inline-flex items-center rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 cursor-pointer" :disabled="form.processing">
 				Check Prompt
 			</button>
-			<div class="rounded bg-white text-black px-4 py-2 disabled:opacity-50 inline-block ml-4 border-1 border-solid border-black">
-				<a href="/incidents">View Incidents</a>
-			</div>
+			<Link
+				:href="incidentsIndex().url"
+				class="inline-flex items-center rounded-xl border border-white/30 bg-white/6 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/14 ml-4"
+			>
+				View Incidents
+			</Link>
 		</form>
 
 		<div v-if="hasResult" class="rounded border p-4 space-y-3">
@@ -81,12 +86,8 @@ const incidentTitle = ref('Prompt risk flagged')
 				<div class="text-sm font-medium">Create incident</div>
 				<input v-model="incidentTitle" class="w-full rounded border p-2" />
 
-				<form
-					@submit.prevent="
-						$inertia.post(`/incidents/from-check/${props.check!.id}`, { title: incidentTitle })
-					"
-				>
-					<button class="rounded bg-red-600 text-white px-4 py-2">
+				<form @submit.prevent="router.post(fromCheck(props.check!.id).url, { title: incidentTitle })">
+					<button class="inline-flex items-center rounded-xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 cursor-pointer">
 						Log Incident
 					</button>
 				</form>
